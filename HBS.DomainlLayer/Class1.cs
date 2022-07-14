@@ -2,7 +2,8 @@
 
 namespace HBS.DomainlLayer
 {
-    public class Class1
+    public class class1
     {
+
     }
 }
