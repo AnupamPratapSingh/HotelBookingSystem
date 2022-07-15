@@ -30,6 +30,7 @@ namespace HotelBookingSystem
         {
 
             services.AddControllers();
+            services.AddScoped<InterfaceHotelService, HotelServices>();
             services.AddDbContext<HBMSDBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("ConStr")));
             services.AddSwaggerGen(c =>
             {
