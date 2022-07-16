@@ -12,11 +12,11 @@ namespace HotelBookingSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ServiceController : ControllerBase
+    public class AdminController : ControllerBase
     {
         private readonly InterfaceHotelService HotelServices;
 
-        public ServiceController(InterfaceHotelService HotelServices)
+        public AdminController(InterfaceHotelService HotelServices)
         {
             this.HotelServices = HotelServices;
         }
@@ -76,14 +76,34 @@ namespace HotelBookingSystem.Controllers
             return BadRequest("Not found");
         }
 
-        [HttpPost(nameof(RegisterNewUser))]
-        public ActionResult RegisterNewUser(User user)
+
+        [HttpGet(nameof(BookingRequestList))]
+        public ActionResult BookingRequestList()
         {
             try
             {
-                HotelServices.RegisterNewUser(user);
+                var BookingRequest = HotelServices.BookingRequestsList();
+                if (BookingRequest != null)
+                {
+                    return Ok(BookingRequest);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Not found");
+            }
 
-                return Ok("User Registered");
+            return BadRequest("Not found");
+        }
+
+        [HttpPost(nameof(ApproveBooking))]
+        public ActionResult ApproveBooking(BookingDetails booking)
+        {
+            try
+            {
+                HotelServices.ApproveBooking(booking);
+
+                return Ok("Booking Request has been Confirmed");
             }
             catch (Exception e)
             {
@@ -92,6 +112,7 @@ namespace HotelBookingSystem.Controllers
             return BadRequest("Not found");
 
         }
+
 
     }
 }

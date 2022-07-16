@@ -52,5 +52,28 @@ namespace HBS.ServiceLayer
             HBMSDBContext.SaveChanges();
 
         }
+
+        public void AddBookingRequest(BookingRequest booking)
+        {
+            HBMSDBContext.Add<BookingRequest>(booking);
+            HBMSDBContext.SaveChanges();
+
+        }
+
+        public IList<BookingRequest> BookingReuestList()
+        {
+            return HBMSDBContext.Set<BookingRequest>().ToList();
+        }
+
+
+
+        public void ApproveBooking(BookingDetails booking)
+        {
+            HBMSDBContext.Add<BookingDetails>(booking);
+            HBMSDBContext.SaveChanges();
+
+        }
+
+
     }
 }

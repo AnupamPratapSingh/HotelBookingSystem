@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HBS.RepositaryLayer.Migrations
 {
     [DbContext(typeof(HBMSDBContext))]
-    [Migration("20220714060950_Init")]
-    partial class Init
+    [Migration("20220716084617_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,34 @@ namespace HBS.RepositaryLayer.Migrations
                     b.HasKey("booking_id");
 
                     b.ToTable("BookingDetails");
+                });
+
+            modelBuilder.Entity("HBS.DomainlLayer.Models.BookingRequest", b =>
+                {
+                    b.Property<string>("user_name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("booked_from")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("booked_to")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("hotel_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("no_of_adults")
+                        .HasColumnType("int");
+
+                    b.Property<int>("no_of_children")
+                        .HasColumnType("int");
+
+                    b.Property<string>("room_type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("user_name");
+
+                    b.ToTable("BookingRequest");
                 });
 
             modelBuilder.Entity("HBS.DomainlLayer.Models.Hotel", b =>

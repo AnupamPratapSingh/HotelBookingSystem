@@ -17,5 +17,13 @@ namespace HBS.ServiceLayer
 
         void RegisterNewUser(User user);
 
+        void AddBookingRequest(BookingRequest booking);
+
+        IList<BookingRequest> BookingRequestsList();
+
+        void ApproveBooking(BookingDetails booking);
+
+
+
     }
 }

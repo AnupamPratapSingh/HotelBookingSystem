@@ -52,6 +52,34 @@ namespace HBS.RepositaryLayer.Migrations
                     b.ToTable("BookingDetails");
                 });
 
+            modelBuilder.Entity("HBS.DomainlLayer.Models.BookingRequest", b =>
+                {
+                    b.Property<string>("user_name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("booked_from")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("booked_to")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("hotel_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("no_of_adults")
+                        .HasColumnType("int");
+
+                    b.Property<int>("no_of_children")
+                        .HasColumnType("int");
+
+                    b.Property<string>("room_type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("user_name");
+
+                    b.ToTable("BookingRequest");
+                });
+
             modelBuilder.Entity("HBS.DomainlLayer.Models.Hotel", b =>
                 {
                     b.Property<int>("hotel_id")

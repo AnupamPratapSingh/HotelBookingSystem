@@ -24,5 +24,8 @@ namespace HBS.RepositaryLayer
 
         DbSet<BookingDetails> BookingDetails{ get; set; }
 
+        DbSet<BookingRequest> BookingRequest { get; set; }
+
+
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HBS.RepositaryLayer.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -24,6 +24,23 @@ namespace HBS.RepositaryLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BookingDetails", x => x.booking_id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BookingRequest",
+                columns: table => new
+                {
+                    user_name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    hotel_name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    room_type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    booked_from = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    booked_to = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    no_of_adults = table.Column<int>(type: "int", nullable: false),
+                    no_of_children = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookingRequest", x => x.user_name);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +104,9 @@ namespace HBS.RepositaryLayer.Migrations
         {
             migrationBuilder.DropTable(
                 name: "BookingDetails");
+
+            migrationBuilder.DropTable(
+                name: "BookingRequest");
 
             migrationBuilder.DropTable(
                 name: "Hotel");
