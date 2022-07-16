@@ -23,6 +23,11 @@ namespace HBS.ServiceLayer
 
         void ApproveBooking(BookingDetails booking);
 
+        IList<BookingDetails> Report();
+
+
+        IList<RoomDetails> RoomList();
+
 
 
     }

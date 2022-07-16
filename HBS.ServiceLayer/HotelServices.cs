@@ -60,7 +60,7 @@ namespace HBS.ServiceLayer
 
         }
 
-        public IList<BookingRequest> BookingReuestList()
+        public IList<BookingRequest> BookingRequestsList()
         {
             return HBMSDBContext.Set<BookingRequest>().ToList();
         }
@@ -72,6 +72,16 @@ namespace HBS.ServiceLayer
             HBMSDBContext.Add<BookingDetails>(booking);
             HBMSDBContext.SaveChanges();
 
+        }
+
+        public IList<BookingDetails> Report()
+        {
+            return HBMSDBContext.Set<BookingDetails>().ToList();
+        }
+
+        public IList<RoomDetails> RoomList()
+        {
+            return HBMSDBContext.Set<RoomDetails>().ToList();
         }
 
 

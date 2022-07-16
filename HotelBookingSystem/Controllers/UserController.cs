@@ -55,6 +55,26 @@ namespace HotelBookingSystem.Controllers
         }
 
 
+        [HttpGet(nameof(RoomList))]
+        public ActionResult RoomList()
+        {
+            try
+            {
+                var RoomDetails = HotelServices.RoomList();
+                if (RoomDetails != null)
+                {
+                    return Ok(RoomDetails);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Not found");
+            }
+
+            return BadRequest("Not found");
+        }
+
+
 
 
 

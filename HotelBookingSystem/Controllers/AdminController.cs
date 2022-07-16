@@ -113,6 +113,25 @@ namespace HotelBookingSystem.Controllers
 
         }
 
+        [HttpGet(nameof(Report))]
+        public ActionResult Report()
+        {
+            try
+            {
+                var BookingDetails = HotelServices.Report();
+                if (BookingDetails != null)
+                {
+                    return Ok(BookingDetails);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Not found");
+            }
+
+            return BadRequest("Not found");
+        }
+
 
     }
 }
