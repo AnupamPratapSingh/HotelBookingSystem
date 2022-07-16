@@ -22,6 +22,24 @@ namespace HotelBookingSystem.Controllers
         }
 
 
+        [HttpPost(nameof(AddHotel))]
+        public ActionResult AddHotel(Hotel hotel)
+        {
+            try
+            {
+                HotelServices.AddHotel(hotel);
+
+                return Ok("New Hotel Added");
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Not found");
+            }
+            return BadRequest("Not found");
+
+        }
+
+
         [HttpGet(nameof(HotelList))]
         public ActionResult HotelList()
         {

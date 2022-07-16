@@ -28,7 +28,7 @@ namespace HBS.ServiceLayer
 
         IList<RoomDetails> RoomList();
 
-
+        void AddHotel(Hotel hotel);
 
     }
 }

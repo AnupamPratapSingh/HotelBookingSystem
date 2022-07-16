@@ -84,6 +84,13 @@ namespace HBS.ServiceLayer
             return HBMSDBContext.Set<RoomDetails>().ToList();
         }
 
+        public void AddHotel(Hotel hotel)
+        {
+            HBMSDBContext.Add<Hotel>(hotel);
+            HBMSDBContext.SaveChanges();
+
+        }
+
 
     }
 }
