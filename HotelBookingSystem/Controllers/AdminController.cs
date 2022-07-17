@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HBS.ServiceLayer;
 using HBS.DomainlLayer.Models;
-
+using Microsoft.Extensions.Logging;
 
 namespace HotelBookingSystem.Controllers
 {
@@ -15,9 +15,12 @@ namespace HotelBookingSystem.Controllers
     public class AdminController : ControllerBase
     {
         private readonly InterfaceHotelService HotelServices;
+        private readonly ILogger<AdminController> _logger;
 
-        public AdminController(InterfaceHotelService HotelServices)
+        public AdminController(InterfaceHotelService HotelServices , ILogger<AdminController> logger)
         {
+            _logger = logger;
+            _logger.LogInformation("Hotel Added");
             this.HotelServices = HotelServices;
         }
 
@@ -33,7 +36,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException); 
             }
             return BadRequest("Not found");
 
@@ -53,7 +56,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
 
             return BadRequest("Not found");
@@ -71,7 +74,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
             return BadRequest("Not found");
 
@@ -89,7 +92,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
             return BadRequest("Not found");
         }
@@ -108,7 +111,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
 
             return BadRequest("Not found");
@@ -125,7 +128,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
             return BadRequest("Not found");
 
@@ -144,7 +147,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
 
             return BadRequest("Not found");

@@ -18,6 +18,11 @@ namespace HotelBookingSystem
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging((logging) =>
+                {
+                    logging.AddFile("AppLogs/GBSAppLogs{Date}.txt");
+
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

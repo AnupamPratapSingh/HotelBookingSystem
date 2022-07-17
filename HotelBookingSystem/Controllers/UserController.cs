@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HBS.ServiceLayer;
 using HBS.DomainlLayer.Models;
+using Microsoft.Extensions.Logging;
 
 namespace HotelBookingSystem.Controllers
 {
@@ -14,9 +15,12 @@ namespace HotelBookingSystem.Controllers
     public class UserController : ControllerBase
     {
         private readonly InterfaceHotelService HotelServices;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(InterfaceHotelService HotelServices)
+        public UserController(InterfaceHotelService HotelServices , ILogger<UserController> logger)
         {
+            _logger = logger;
+            _logger.LogInformation("User Added");
             this.HotelServices = HotelServices;
         }
 
@@ -31,7 +35,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
             return BadRequest("Not found");
 
@@ -48,7 +52,7 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
             }
             return BadRequest("Not found");
 
@@ -68,7 +72,25 @@ namespace HotelBookingSystem.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest("Not found");
+                _logger.LogError("Exception Occured", e.InnerException);
+            }
+
+            return BadRequest("Not found");
+        }
+        [HttpGet(nameof(HotelList))]
+        public ActionResult HotelList()
+        {
+            try
+            {
+                var Hotel = HotelServices.HotelList();
+                if (Hotel != null)
+                {
+                    return Ok(Hotel);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Exception Occured", e.InnerException);
             }
 
             return BadRequest("Not found");
